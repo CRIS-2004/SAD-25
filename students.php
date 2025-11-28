@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <li class="nav-item"><a class="nav-link " href="admin_dashboard.php">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="teachers.php">Teachers</a></li>
         <li class="nav-item"><a class="nav-link active" href="students.php">Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="attendance_section.php">Attendance</a></li>
       </ul>
       <a href="logout.php" class="btn btn-outline-light">Logout</a>
     </div>

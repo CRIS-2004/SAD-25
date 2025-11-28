@@ -25,6 +25,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         <li class="nav-item"><a class="nav-link active" href="admin_dashboard.php">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="teachers.php">Teachers</a></li>
         <li class="nav-item"><a class="nav-link" href="students.php">Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="attendance_section.php">Attendance</a></li>
       </ul>
       <a href="logout.php" class="btn btn-outline-light">Logout</a>
     </div>
@@ -83,48 +84,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
   </div>
 
   <!-- Attendance Section -->
-  <div class="mt-5" id="attendance-section">
-    <h3>📋 Attendance Records</h3>
-    <div class="table-responsive mt-3">
-      <table class="table table-striped table-bordered">
-        <thead class="table-primary">
-          <tr>
-            <th>Date</th>
-            <th>Student Name</th>
-            <th>Teacher</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          $sql = "SELECT a.date, a.status, 
-                         s.name AS student_name, 
-                         t.name AS teacher_name
-                  FROM attendance a
-                  JOIN users s ON a.student_id = s.id
-                  JOIN users t ON a.teacher_id = t.id
-                  ORDER BY a.date DESC";
-
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                  echo "<tr>
-                          <td>{$row['date']}</td>
-                          <td>{$row['student_name']}</td>
-                          <td>{$row['teacher_name']}</td>
-                          <td><span class='badge " . 
-                              ($row['status'] == 'Present' ? 'bg-success' : 'bg-danger') . 
-                              "'>{$row['status']}</span></td>
-                        </tr>";
-              }
-          } else {
-              echo "<tr><td colspan='4' class='text-center text-muted'>No attendance records yet.</td></tr>";
-          }
-          ?>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  
 </div>
 
 </body>
